@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAnchorNavigation } from "@/lib/utils/scroll";
 
 const navLinks = [
   { label: "Usluge", href: "/#services" },
@@ -14,12 +15,20 @@ const navLinks = [
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const onAnchorClick = useAnchorNavigation();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
+    <header
+      id="site-header"
+      className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm"
+    >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/#hero" className="shrink-0">
+        <Link
+          href="/#hero"
+          className="shrink-0 transition-opacity hover:opacity-80 focus-visible:opacity-80"
+          onClick={(e) => onAnchorClick(e, "/#hero")}
+        >
           <img
             src="/logo-black-no-bg.svg?width=150&height=40"
             alt="Geodet Logo"
@@ -37,6 +46,7 @@ export function SiteHeader() {
               key={link.label}
               href={link.href}
               className="text-sm font-medium text-charcoal transition-colors hover:text-navy"
+              onClick={(e) => onAnchorClick(e, link.href)}
             >
               {link.label}
             </Link>
@@ -51,7 +61,10 @@ export function SiteHeader() {
             size="sm"
             className="hidden rounded-sm bg-[#1D4ED8] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-[#1E3A8A] md:inline-flex"
           >
-            <Link href="/#contact">
+            <Link
+              href="/#contact"
+              onClick={(e) => onAnchorClick(e, "/#contact")}
+            >
               <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
               Nazovite nas
             </Link>
@@ -93,7 +106,10 @@ export function SiteHeader() {
                 key={link.label}
                 href={link.href}
                 className="py-2 text-sm font-medium text-charcoal transition-colors hover:text-navy"
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => {
+                  onAnchorClick(e, link.href);
+                  setMobileOpen(false);
+                }}
               >
                 {link.label}
               </Link>

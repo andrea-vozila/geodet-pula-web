@@ -1,30 +1,42 @@
-import Link from "next/link"
-import { MapPin, Phone, Mail } from "lucide-react"
+"use client";
+
+import Link from "next/link";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { useAnchorNavigation } from "@/lib/utils/scroll";
 
 const navLinks = [
   { label: "Usluge", href: "/#services" },
   { label: "O nama", href: "/#about" },
   { label: "Česta pitanja", href: "/#faq" },
   { label: "Kontakt", href: "/#contact" },
-]
+];
 
 const legalLinks = [
   { label: "Impressum", href: "/pravne-informacije#impressum" },
-  { label: "Politika privatnosti", href: "/pravne-informacije#politika-privatnosti" },
+  {
+    label: "Politika privatnosti",
+    href: "/pravne-informacije#politika-privatnosti",
+  },
   { label: "Uvjeti korištenja", href: "/pravne-informacije#uvjeti-koristenja" },
   { label: "Postavke kolačića", href: "/pravne-informacije#postavke-kolacica" },
-]
+];
 
 export function FooterSection() {
+  const onAnchorClick = useAnchorNavigation();
+
   return (
     <footer className="bg-footer-bg text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-3">
           {/* Brand */}
           <div>
-            <Link href="/#hero" className="mb-4 inline-block">
+            <Link
+              href="/#hero"
+              className="mb-4 inline-block transition-opacity hover:opacity-80 focus-visible:opacity-80"
+              onClick={(e) => onAnchorClick(e, "/#hero")}
+            >
               <img
-                src="/placeholder.svg?width=150&height=40"
+                src="/logo-black-no-bg.svg?width=150&height=40"
                 alt="Geodet Logo"
                 className="h-8 w-auto brightness-0 invert"
               />
@@ -35,7 +47,12 @@ export function FooterSection() {
             </p>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
-                <MapPin size={16} strokeWidth={2.5} className="shrink-0 text-primary-foreground/60" aria-hidden="true" />
+                <MapPin
+                  size={16}
+                  strokeWidth={2.5}
+                  className="shrink-0 text-primary-foreground/60"
+                  aria-hidden="true"
+                />
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=Mutilska+23,+52100+Pula,+Hrvatska"
                   target="_blank"
@@ -46,16 +63,46 @@ export function FooterSection() {
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Phone size={16} strokeWidth={2.5} className="shrink-0 text-primary-foreground/60" aria-hidden="true" />
+                <Phone
+                  size={16}
+                  strokeWidth={2.5}
+                  className="shrink-0 text-primary-foreground/60"
+                  aria-hidden="true"
+                />
                 <div className="flex flex-col">
-                  <a href="tel:+385992188077" className="text-sm text-primary-foreground/70 hover:text-primary-foreground">+385 99 218 8077</a>
-                  <a href="tel:+38552213777" className="text-sm text-primary-foreground/70 hover:text-primary-foreground">+385 52 213 777</a>
-                  <a href="tel:+38598219197" className="text-sm text-primary-foreground/70 hover:text-primary-foreground">+385 98 219 197</a>
+                  <a
+                    href="tel:+385992188077"
+                    className="text-sm text-primary-foreground/70 hover:text-primary-foreground"
+                  >
+                    +385 99 218 8077
+                  </a>
+                  <a
+                    href="tel:+38552213777"
+                    className="text-sm text-primary-foreground/70 hover:text-primary-foreground"
+                  >
+                    +385 52 213 777
+                  </a>
+                  <a
+                    href="tel:+38598219197"
+                    className="text-sm text-primary-foreground/70 hover:text-primary-foreground"
+                  >
+                    +385 98 219 197
+                  </a>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Mail size={16} strokeWidth={2.5} className="shrink-0 text-primary-foreground/60" aria-hidden="true" />
-                <a href="mailto:marin@geodet.hr" className="text-sm text-primary-foreground/70 hover:text-primary-foreground">marin@geodet.hr</a>
+                <Mail
+                  size={16}
+                  strokeWidth={2.5}
+                  className="shrink-0 text-primary-foreground/60"
+                  aria-hidden="true"
+                />
+                <a
+                  href="mailto:marin@geodet.hr"
+                  className="text-sm text-primary-foreground/70 hover:text-primary-foreground"
+                >
+                  marin@geodet.hr
+                </a>
               </div>
             </div>
           </div>
@@ -72,6 +119,7 @@ export function FooterSection() {
                     <Link
                       href={link.href}
                       className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                      onClick={(e) => onAnchorClick(e, link.href)}
                     >
                       {link.label}
                     </Link>
@@ -92,6 +140,7 @@ export function FooterSection() {
                   <Link
                     href={link.href}
                     className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                    onClick={(e) => onAnchorClick(e, link.href)}
                   >
                     {link.label}
                   </Link>
@@ -109,5 +158,5 @@ export function FooterSection() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

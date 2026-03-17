@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ScrollRestorer } from '@/components/scroll-restorer'
 import './globals.css'
 
 const inter = Inter({
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="hr" className={inter.variable}>
       <body className="font-sans antialiased w-full overflow-x-hidden">
         {children}
+        <ScrollRestorer />
         <Analytics />
       </body>
     </html>

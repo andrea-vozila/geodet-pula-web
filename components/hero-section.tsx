@@ -1,121 +1,143 @@
-import { useEffect, useState } from "react"
-import { CheckCircle2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { useEffect, useState } from "react";
+import { CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useAnchorNavigation } from "@/lib/utils/scroll";
 
 const rotatingMessages = [
   "Legalizirajte objekte prije dolaska inspekcija.",
   "Očistite vlasništvo za brzu prodaju.",
   "Definirajte međe i zauvijek riješite nesuglasice sa susjedima.",
-]
+];
 
 const trustItems = [
   "Besplatno izlazimo na teren i rješavamo birokraciju umjesto vas.",
   "Više od 30 godina rješavamo imovinsko-pravne probleme u Istri.",
   "Detaljno poznajemo procedure lokalnih ureda i kako najbrže riješiti vaš predmet.",
-]
+];
 
 export function HeroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const onAnchorClick = useAnchorNavigation();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % rotatingMessages.length)
-    }, 3500)
-
-    return () => clearInterval(interval)
-  }, [])
+      setCurrentIndex((prev) => (prev + 1) % rotatingMessages.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden text-white"
+      className="relative min-h-[100svh] overflow-hidden bg-white text-charcoal"
     >
-      {/* Background image & vignette overlay */}
+      {/* Background images + premium gradients (A/B overlays) */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        {/* Desktop / tablet background */}
         <img
           src="/hero-opt2.jpg"
           alt="Geodetski snimak Pule i Istre iz zraka"
           className="hidden h-full w-full object-cover md:block"
         />
-        {/* Mobile background */}
         <img
           src="/hero-opt-mobile.jpg"
           alt="Geodetska oprema na terenu u Istri"
           className="block h-full w-full object-cover md:hidden"
         />
 
-        {/* Dark vignette for contrast */}
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(15,23,42,0.2),rgba(0,0,0,0.95))]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
+        {/* Localized bottom fade to hide hard image edge */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-secondary via-secondary/70 to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-6xl items-center px-6 py-8 sm:py-10 md:px-8 lg:px-10 lg:py-16">
-        <div className="flex w-full flex-col items-start text-left md:items-center md:text-center">
-          {/* Pre-headline */}
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-white/70 md:mb-4 md:text-sm">
-            Geodetske usluge za Pulu, Istru i okolicu
-          </p>
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-[90rem] pl-4 pr-4 pt-28 sm:pl-8 md:pt-32 lg:pl-16 lg:pt-40 xl:pl-24">
+        <div className="w-full max-w-full">
+          {/* Group 1: Headings */}
+          <div className="flex max-w-full flex-col gap-3 md:gap-4">
+            <p className="max-w-full break-words text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/80 md:text-sm">
+              Geodetske usluge za Pulu, Istru i okolicu
+            </p>
 
-          {/* Headline */}
-          <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-5xl lg:text-6xl">
-            Do čistih papira <br />
-            Bez čekanja u redovima katastra
-          </h1>
+            <h1 className="max-w-full break-words text-balance text-3xl font-extrabold leading-tight tracking-tight text-charcoal sm:text-4xl md:text-5xl lg:text-6xl">
+              Do čistih papira <br />
+              Bez čekanja u redovima katastra
+            </h1>
 
-          {/* Sub-headline — rotating messages */}
-          <div className="mt-4 h-16 w-full overflow-hidden md:mt-6">
-            <div className="relative h-full">
-              {rotatingMessages.map((message, index) => {
-                const isActive = index === currentIndex
+            {/* Rotator */}
+            <div
+              className="relative w-full max-w-full overflow-hidden"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {/* Reserve height to prevent layout shift on tiny screens */}
+              <div className="min-h-[3.5rem] sm:min-h-[3rem]">
+                {rotatingMessages.map((message, index) => {
+                  const isActive = index === currentIndex;
 
-                return (
-                  <p
-                    key={message}
-                    className={`absolute inset-0 flex items-center text-left text-lg font-medium text-white/90 transition-all duration-700 ease-out md:text-center md:text-xl ${
-                      isActive ? "translate-x-0 opacity-100" : "translate-x-6 opacity-0"
-                    }`}
-                    aria-hidden={!isActive}
-                  >
-                    {message}
-                  </p>
-                )
-              })}
+                  return (
+                    <p
+                      key={message}
+                      className={[
+                        "absolute left-0 top-0 w-full max-w-full break-words pr-2 text-base font-medium text-charcoal/90 transition-all duration-700 ease-out sm:text-lg md:text-xl",
+                        isActive
+                          ? "translate-x-0 opacity-100"
+                          : "translate-x-6 opacity-0",
+                      ].join(" ")}
+                      aria-hidden={!isActive}
+                    >
+                      {message}
+                    </p>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          {/* CTA Button */}
-          <div className="mt-8 flex w-full justify-start md:justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="h-10 rounded-sm bg-navy px-4 text-sm font-semibold text-primary-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] ring-1 ring-navy/20 transition-all hover:-translate-y-1 hover:bg-navy-dark active:scale-95 md:h-12 md:px-8 md:text-base"
-            >
-              <a href="/#contact">
-                <span className="md:hidden">{"Zatražite besplatnu procjenu"}</span>
-                <span className="hidden md:inline">{"Zatražite besplatnu procjenu stanja odmah"}</span>
-              </a>
-            </Button>
-          </div>
+          {/* Group 2: Action */}
+          <div className="mt-10 flex max-w-full flex-col gap-4 md:mt-14">
+            <div className="flex w-full max-w-full justify-start">
+              <Button
+                asChild
+                size="lg"
+                className="h-10 rounded-sm bg-navy px-4 text-sm font-semibold text-primary-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] ring-1 ring-navy/20 transition-all hover:-translate-y-1 hover:bg-navy-dark active:scale-95 md:h-12 md:px-8 md:text-base"
+              >
+                <a href="/#contact" onClick={(e) => onAnchorClick(e, "/#contact")}>
+                  <span className="md:hidden">
+                    {"Zatražite besplatnu procjenu"}
+                  </span>
+                  <span className="hidden md:inline">
+                    {"Zatražite besplatnu procjenu stanja odmah"}
+                  </span>
+                </a>
+              </Button>
+            </div>
 
-          {/* Trust badge box */}
-          <div className="mt-6 w-full max-w-3xl rounded-lg border border-white/10 bg-black/20 p-4 backdrop-blur-md md:mt-8">
-            <div className="flex flex-col gap-3 md:flex-row md:justify-center md:gap-6">
+            <div className="flex max-w-full flex-col gap-3 ">
               {trustItems.map((item) => (
-                <div key={item} className="flex items-start gap-2">
+                <div
+                  key={item}
+                  className="flex max-w-full items-center gap-2 border-l-2 border-charcoal/15 pl-3"
+                >
                   <CheckCircle2
-                    className="mt-0.5 shrink-0 text-[#166534]"
+                    className="shrink-0 text-[#166534]"
                     size={16}
                     strokeWidth={1.5}
                     aria-hidden="true"
                   />
-                  <p className="text-sm leading-relaxed text-white/80">{item}</p>
+                  <p className="max-w-full break-words text-xs font-medium text-charcoal/90 md:text-sm">
+                    {item}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Bottom padding so section can breathe without pushing past viewport */}
+          <div className="h-12 md:h-16" aria-hidden="true" />
         </div>
       </div>
     </section>
-  )
+  );
 }

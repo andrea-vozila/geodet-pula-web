@@ -5,6 +5,7 @@
 
 :root {
   /* Geodet brand: Light mode only */
+  --header-height: 65px;
   --background: #FFFFFF;
   --foreground: #1E293B;
   --card: #FFFFFF;
@@ -34,6 +35,11 @@
   --charcoal: #1E293B;
   --light-gray: #F8F9FA;
   --footer-bg: #1E293B;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
 }
 
 @theme inline {

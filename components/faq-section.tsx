@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { Send } from "lucide-react"
+import { useAnchorNavigation } from "@/lib/utils/scroll"
 
 const faqs = [
   {
@@ -33,6 +34,8 @@ const faqs = [
 ]
 
 export function FaqSection() {
+  const onAnchorClick = useAnchorNavigation()
+
   return (
     <section className="bg-background py-20 lg:py-24">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
@@ -70,7 +73,7 @@ export function FaqSection() {
             asChild
             className="rounded-sm bg-navy px-4 text-sm font-semibold text-primary-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] ring-1 ring-navy/20 transition-all hover:-translate-y-1 hover:bg-navy-dark active:scale-95 sm:px-6"
           >
-            <a href="/#contact">
+            <a href="/#contact" onClick={(e) => onAnchorClick(e, "/#contact")}>
               <Send size={16} strokeWidth={2.5} aria-hidden="true" />
               Pošaljite upit
             </a>

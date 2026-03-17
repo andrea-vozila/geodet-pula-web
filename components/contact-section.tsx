@@ -14,10 +14,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useAnchorNavigation } from "@/lib/utils/scroll";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export function ContactSection() {
+  const onAnchorClick = useAnchorNavigation();
   const [status, setStatus] = useState<FormStatus>("idle");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -222,7 +224,10 @@ export function ContactSection() {
                   variant="outline"
                   className="mb-8 hidden h-10 rounded-sm border-navy px-4 text-sm font-semibold text-navy transition-all hover:-translate-y-1 hover:bg-navy hover:text-primary-foreground active:scale-95 md:inline-flex md:h-12 md:px-6 md:text-base"
                 >
-                  <a href="/#contact">
+                  <a
+                    href="/#contact"
+                    onClick={(e) => onAnchorClick(e, "/#contact")}
+                  >
                     <Phone size={18} strokeWidth={2.5} aria-hidden="true" />
                     Nazovite nas
                   </a>
