@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useRef, useEffect, useState, useCallback } from "react"
-import { Star, ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useRef, useEffect, useState, useCallback } from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const partners = [
   "BOUYGUES CONSTRUCTION",
@@ -24,8 +24,7 @@ const partners = [
   "ENERGOMONT",
   "FLUMING",
   "ARH2000 d.o.o.",
-
-]
+];
 
 const testimonials = [
   {
@@ -88,59 +87,59 @@ const testimonials = [
     text: "Evidentiranje zgrade odrađeno efikasno uz odličnu komunikaciju. Sve preporuke.",
     rating: 5,
   },
-]
+];
 
 function useItemsPerView() {
-  const [itemsPerView, setItemsPerView] = useState(1)
+  const [itemsPerView, setItemsPerView] = useState(1);
 
   useEffect(() => {
     function update() {
-      if (window.innerWidth >= 1024) setItemsPerView(3)
-      else if (window.innerWidth >= 768) setItemsPerView(2)
-      else setItemsPerView(1)
+      if (window.innerWidth >= 1024) setItemsPerView(3);
+      else if (window.innerWidth >= 768) setItemsPerView(2);
+      else setItemsPerView(1);
     }
-    update()
-    window.addEventListener("resize", update)
-    return () => window.removeEventListener("resize", update)
-  }, [])
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
-  return itemsPerView
+  return itemsPerView;
 }
 
 export function SocialProofSection() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const itemsPerView = useItemsPerView()
-  const maxSlide = Math.max(0, testimonials.length - itemsPerView)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const itemsPerView = useItemsPerView();
+  const maxSlide = Math.max(0, testimonials.length - itemsPerView);
 
   useEffect(() => {
     if (isAutoPlaying) {
       intervalRef.current = setInterval(() => {
-        setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1))
-      }, 5000)
+        setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
+      }, 5000);
     }
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-    }
-  }, [isAutoPlaying, maxSlide])
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isAutoPlaying, maxSlide]);
 
   const goTo = useCallback(
     (index: number) => {
-      setCurrentSlide(Math.max(0, Math.min(index, maxSlide)))
-      setIsAutoPlaying(false)
+      setCurrentSlide(Math.max(0, Math.min(index, maxSlide)));
+      setIsAutoPlaying(false);
     },
-    [maxSlide]
-  )
+    [maxSlide],
+  );
 
   // Each card takes up (100 / itemsPerView)% of the container
   // On mobile (itemsPerView=1), shifting by 100% moves exactly one card
-  const slideOffset = currentSlide * (100 / itemsPerView)
+  const slideOffset = currentSlide * (100 / itemsPerView);
 
   return (
     <section className="section-space bg-secondary">
       {/* Partners Marquee */}
-      <div className="mb-16">
+      <div className="mb-[var(--section-y)]">
         <p className="mb-8 px-6 text-center text-sm font-bold uppercase tracking-widest text-[#1E293B] md:px-0">
           Partneri i institucije s kojima uspješno surađujemo
         </p>
@@ -149,8 +148,8 @@ export function SocialProofSection() {
           <div className="animate-marquee flex w-max items-center gap-16 px-8">
             {[...partners, ...partners].map((partner, i) => (
               /* UNUTARNJI KONTEJNER (Značka) - gap-16 kontrolira razmak između Imena i Separatora */
-              <div 
-                key={`${partner}-${i}`} 
+              <div
+                key={`${partner}-${i}`}
                 className="flex items-center gap-16 shrink-0"
               >
                 {/* 1. IME PARTNERA (Minimalistički stil) */}
@@ -160,11 +159,10 @@ export function SocialProofSection() {
 
                 {/* 2. SEPARATOR (Točka) */}
                 <span className="text-muted-foreground/60 text-xs md:text-sm select-none flex items-center justify-center -translate-y-[0px]">
-                ◆
+                  ◆
                 </span>
               </div>
             ))}
-            
           </div>
         </div>
       </div>
@@ -187,7 +185,10 @@ export function SocialProofSection() {
                 className="w-full shrink-0 px-3 md:w-1/2 lg:w-1/3"
               >
                 <div className="flex h-full flex-col rounded-sm border-none bg-card p-6 shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.1)] transition-shadow hover:shadow-[0_8px_12px_-2px_rgb(0_0_0_/_0.12)]">
-                  <div className="mb-4 flex gap-1" aria-label={`${testimonial.rating} od 5 zvjezdica`}>
+                  <div
+                    className="mb-4 flex gap-1"
+                    aria-label={`${testimonial.rating} od 5 zvjezdica`}
+                  >
                     {Array.from({ length: testimonial.rating }).map((_, j) => (
                       <Star
                         key={j}
@@ -253,5 +254,5 @@ export function SocialProofSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
