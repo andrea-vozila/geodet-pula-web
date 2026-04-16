@@ -20,19 +20,19 @@ export function SiteHeader() {
   return (
     <header
       id="site-header"
-      className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm"
+      className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm py-3 lg:py-1.5 2xl:py-3"
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div className="page-shell flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/#hero"
-          className="shrink-0 transition-opacity hover:opacity-80 focus-visible:opacity-80"
+          className="shrink-0 transition-opacity hover:opacity-80 focus-visible:opacity-80 flex items-center"
           onClick={(e) => onAnchorClick(e, "/#hero")}
         >
           <img
-            src="/logo-black-no-bg.svg?width=150&height=40"
-            alt="Geodet Logo"
-            className="h-8 w-auto"
+            src="/geodet-doo-pula-istra-logo.svg?"
+            alt="Geodetski ured Pula Istra - Geodet d.o.o. Logo"
+            className="h-8 sm:h-9 md:h-10 lg:h-12 2xl:h-[3.5rem] w-auto object-contain"
           />
         </Link>
 

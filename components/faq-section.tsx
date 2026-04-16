@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: "Koliko koštaju geodetske usluge i kako se formira cijena?",
-    a: "Cijena ovisi o specifičnosti terena i vrsti postupka (legalizacija, parcelacija, usklađenje). Kako ne biste plaćali napamet, naš prvi izlazak na teren i stručna procjena su potpuno besplatni. Nakon pregleda, dajemo vam točnu i transparentnu ponudu bez skrivenih troškova.",
+    a: "Cijena ovisi o specifičnosti terena i vrsti postupka (legalizacija, parcelacija, usklađenje). Kako ne biste plaćali napamet, naša stručna procjena je potpuno besplatna. Nakon pregleda, dajemo vam točnu i transparentnu ponudu bez skrivenih troškova.",
   },
 ]
 
@@ -37,8 +37,8 @@ export function FaqSection() {
   const onAnchorClick = useAnchorNavigation()
 
   return (
-    <section className="bg-background py-20 lg:py-24">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+    <section className="section-space bg-background">
+      <div className="page-shell-narrow">
         <h2 className="mb-12 text-center text-2xl font-bold tracking-tight text-charcoal md:text-3xl lg:text-4xl text-balance">
           Česta pitanja o našim uslugama i procedurama
         </h2>

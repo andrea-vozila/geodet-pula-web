@@ -6,9 +6,9 @@ export default function LegalInformationPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="bg-background py-20 lg:py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl">
+        <section className="section-space bg-background">
+          <div className="page-shell">
+            <div className="page-shell-narrow">
               <h1 className="mb-6 text-3xl font-bold tracking-tight text-charcoal md:text-4xl lg:text-5xl text-balance">
                 Pravne informacije tvrtke GEODET d.o.o.
               </h1>

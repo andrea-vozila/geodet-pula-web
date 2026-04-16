@@ -5,39 +5,87 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const partners = [
-  "Grad Pula",
-  "Općina Medulin",
-  "Grad Rovinj",
-  "Općina Fažana",
-  "Grad Vodnjan",
-  "Općina Ližnjan",
-  "Grad Pazin",
-  "Općina Marčana",
+  "BOUYGUES CONSTRUCTION",
+  "UNITECH",
+  "ODVODNJA",
+  "ALBANEŽ",
+  "OPĆINA MARČANA",
+  "ZRAČNA LUKA PULA",
+  "GRAD ROVINJ",
+  "OPĆA BOLNICA PULA",
+  "SVEUČILIŠTE JURJA DOBRILE",
+  "OPĆINA LIŽNJAN",
+  "GRAD PULA",
+  "GRAD NOVIGRAD",
+  "ŽUPANIJSKA UPRAVA ZA CESTE",
+  "STRABAG HIDROINŽENJERING",
+  "GRAD VODNJAN",
+  "KOMUNALNI SERVIS d.o.o.",
+  "ENERGOMONT",
+  "FLUMING",
+  "ARH2000 d.o.o.",
+
 ]
 
 const testimonials = [
   {
-    name: "Marko Jurčić",
+    name: "Ivan K.",
     location: "Pula",
-    text: "Trebao sam legalizirati kuću koju je gradio otac. U Geodetu su me primili odmah, izašli na teren isti tjedan i riješili sve papire. Nisam morao niti jednom u katastar. Svaka preporuka.",
+    text: "Vrlo profesionalna usluga. Sve je odrađeno brzo i precizno, bez nepotrebnih komplikacija. Preporučujem.",
     rating: 5,
   },
   {
-    name: "Ana Petrović",
-    location: "Medulin",
-    text: "Imali smo problem s međom sa susjedom koji je trajao godinama. Inženjeri iz Geodeta su precizno odredili granice i sve dokumentirali. Sad imam mir i čiste papire.",
-    rating: 5,
-  },
-  {
-    name: "Ivan Brajković",
+    name: "Marko B.",
     location: "Rovinj",
-    text: "Prodavali smo zemljište i trebali smo hitnu parcelaciju. Geodet d.o.o. je odradio posao brzo i profesionalno. Kupac je bio impresioniran koliko su papiri bili uredni.",
+    text: "Od prve komunikacije do završetka posla sve je bilo jasno i korektno. Posebno pohvaljujem brzinu i dostupnost.",
     rating: 5,
   },
   {
-    name: "Mirjana Vuković",
-    location: "Fažana",
-    text: "Naslijedila sam parcelu koja nije bila usklađena u katastru i gruntovnici. Mislila sam da će trajati mjesecima, ali su u Geodetu sve riješili u rekordnom roku.",
+    name: "Ana M.",
+    location: "Poreč",
+    text: "Jako zadovoljan suradnjom. Sve je objašnjeno jasno i sve je odrađeno kako je dogovoreno.",
+    rating: 5,
+  },
+  {
+    name: "Nikola S.",
+    location: "Medulin",
+    text: "Odlična komunikacija i pristup. Sve je riješeno bez čekanja i nepotrebnih komplikacija.",
+    rating: 5,
+  },
+  {
+    name: "Petra L.",
+    location: "Pazin",
+    text: "Pouzdano, brzo i točno. Sve preporuke za bilo kakve geodetske usluge.",
+    rating: 5,
+  },
+  {
+    name: "Tomislav R.",
+    location: "Pula",
+    text: "Geodetski elaborat riješen u roku i bez problema. Sve pohvale za profesionalnost i organizaciju.",
+    rating: 5,
+  },
+  {
+    name: "Marija D.",
+    location: "Rovinj",
+    text: "Parcelacija odrađena kvalitetno i u dogovorenom roku. Vrlo korektan i profesionalan pristup.",
+    rating: 5,
+  },
+  {
+    name: "Luka V.",
+    location: "Labin",
+    text: "Iskolčenje odrađeno precizno i brzo. Sve je prošlo glatko i bez stresa.",
+    rating: 5,
+  },
+  {
+    name: "Ivana P.",
+    location: "Umag",
+    text: "Geodetska situacija napravljena brzo i točno. Sve informacije sam dobila na vrijeme i jasno.",
+    rating: 5,
+  },
+  {
+    name: "Damir G.",
+    location: "Pula",
+    text: "Evidentiranje zgrade odrađeno efikasno uz odličnu komunikaciju. Sve preporuke.",
     rating: 5,
   },
 ]
@@ -90,30 +138,39 @@ export function SocialProofSection() {
   const slideOffset = currentSlide * (100 / itemsPerView)
 
   return (
-    <section className="bg-secondary py-20">
+    <section className="section-space bg-secondary">
       {/* Partners Marquee */}
       <div className="mb-16">
         <p className="mb-8 px-6 text-center text-sm font-bold uppercase tracking-widest text-[#1E293B] md:px-0">
           Partneri i institucije s kojima uspješno surađujemo
         </p>
         <div className="relative overflow-hidden">
+          {/* GLAVNI KONTEJNER TRAKE - gap-16 kontrolira razmak između "Znački" */}
           <div className="animate-marquee flex w-max items-center gap-16 px-8">
             {[...partners, ...partners].map((partner, i) => (
-              <div
-                key={`${partner}-${i}`}
-                className="flex h-12 shrink-0 items-center rounded-sm bg-background/60 px-8"
+              /* UNUTARNJI KONTEJNER (Značka) - gap-16 kontrolira razmak između Imena i Separatora */
+              <div 
+                key={`${partner}-${i}`} 
+                className="flex items-center gap-16 shrink-0"
               >
-                <span className="text-sm font-medium text-muted-foreground/70 select-none">
+                {/* 1. IME PARTNERA (Minimalistički stil) */}
+                <span className="font-display text-lg md:text-xl font-extrabold uppercase tracking-[0.15em] text-midnight/70 whitespace-nowrap select-none">
                   {partner}
+                </span>
+
+                {/* 2. SEPARATOR (Točka) */}
+                <span className="text-muted-foreground/60 text-xs md:text-sm select-none flex items-center justify-center -translate-y-[0px]">
+                ◆
                 </span>
               </div>
             ))}
+            
           </div>
         </div>
       </div>
 
       {/* Testimonials */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="page-shell">
         <h2 className="mb-12 text-center text-2xl font-bold tracking-tight text-charcoal md:text-3xl lg:text-4xl text-balance">
           Što kažu naši klijenti
         </h2>

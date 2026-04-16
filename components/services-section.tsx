@@ -45,8 +45,8 @@ const services: ServiceCard[] = [
 
 export function ServicesSection() {
   return (
-    <section className="bg-secondary py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="section-space bg-secondary">
+      <div className="page-shell">
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2 className="mb-4 text-2xl font-bold tracking-tight text-charcoal md:text-3xl lg:text-4xl">
             Naše usluge

@@ -1,6 +1,14 @@
-import { Award, Users, Crosshair, Building } from "lucide-react"
+import { Award, Users, Crosshair, Building } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const strengths = [
+type Strength = {
+  icon: LucideIcon;
+  title: string;
+  subtitle?: string;
+  text: string;
+};
+
+const strengths: Strength[] = [
   {
     icon: Award,
     title: "Iskustvo koje rješava najteže slučajeve",
@@ -9,7 +17,6 @@ const strengths = [
   {
     icon: Users,
     title: "Tim od 5 stručnjaka",
-    subtitle: "Ne čekate na jednog čovjeka",
     text: "Za razliku od malih ureda gdje se na izlazak na teren čeka mjesecima, naš tim od 5 iskusnih inženjera geodezije i geoinformatike omogućava brzu reakciju i poštivanje dogovorenih rokova.",
   },
   {
@@ -22,21 +29,23 @@ const strengths = [
     title: "Povjerenje institucija",
     text: "Godinama uspješno surađujemo s jedinicama lokalne samouprave (općinama i gradovima), javnim ustanovama i velikim investitorima. Ako institucije vjeruju našoj točnosti i transparentnosti, možete i vi.",
   },
-]
+];
 
 export function AboutSection() {
   return (
-    <section className="bg-secondary py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="section-space bg-secondary">
+      <div className="page-shell">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-16">
           {/* Left: Text content */}
           <div className="lg:col-span-3">
             <h2 className="mb-6 text-2xl font-bold tracking-tight text-charcoal md:text-3xl lg:text-4xl text-balance">
-              Zašto nam vjeruju investitori i obitelji diljem Istre već više od 30
-              godina
+              Zašto nam vjeruju investitori i obitelji diljem Istre već više od
+              30 godina
             </h2>
             <p className="mb-10 text-sm leading-relaxed text-charcoal md:text-base lg:text-lg">
-              {"Tvrtka Geodet d.o.o. nije samo ured koji mjeri parcele. Osnovani davne 1992. godine kao jedna od prvih tvrtki za geodetsko-katastarske poslove u Puli, naš primarni posao je pravna sigurnost vaše nekretnine. Znamo da geodetski poslovi mogu biti stresni, dugotrajni i puni nepoznanica. Zato smo naš način rada prilagodili vama:"}
+              {
+                "Tvrtka Geodet d.o.o. nije samo ured koji mjeri parcele. Osnovani davne 1992. godine kao jedna od prvih tvrtki za geodetsko-katastarske poslove u Puli, naš primarni posao je pravna sigurnost vaše nekretnine. Znamo da geodetski poslovi mogu biti stresni, dugotrajni i puni nepoznanica. Zato smo naš način rada prilagodili vama:"
+              }
             </p>
 
             <div className="flex flex-col gap-8">
@@ -75,23 +84,28 @@ export function AboutSection() {
               >
                 Mutilska 23
               </a>
-              . Bilo da prodajete, gradite ili legalizirate&nbsp;&ndash; svratite do nas ili nas nazovite. Svaki uspješan
-              projekt počinje jednim preciznim mjerenjem i iskrenim savjetom.
+              . Bilo da prodajete, gradite ili legalizirate&nbsp;&ndash;
+              svratite do nas ili nas nazovite. Svaki uspješan projekt počinje
+              jednim preciznim mjerenjem i iskrenim savjetom.
             </p>
           </div>
 
-          {/* Right: Image placeholder */}
+          {/* Right: Image */}
           <div className="lg:col-span-2">
-            <div className="sticky top-8 overflow-hidden rounded-sm shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.1)]">
+            <div className="relative aspect-square overflow-hidden rounded-sm shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.1)]">
               <img
-                src="/placeholder.svg?width=600&height=800"
-                alt="Tim inženjera geodezije Geodet d.o.o. na terenu u Istri s najmodernijom geodetskom opremom"
+                src="/geodetske-usluge-zadovoljni-klijent-rukovanje-na-terenu-istra.webp"
+                alt="Geodetski stručnjak se rukuje s klijentom na poljoprivrednom zemljištu u Istri nakon uspješno obavljenog geodetskog posla"
+                loading="lazy"
+                decoding="async"
                 className="h-auto w-full object-cover"
               />
+
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0),rgba(0,0,0,0.3))]" />
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
