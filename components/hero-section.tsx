@@ -12,7 +12,7 @@ const rotatingMessages = [
 ];
 
 const trustItems = [
-  "Izlazimo na teren u najkrćem roku i rješavamo birokraciju umjesto vas.",
+  "Izlazimo na teren u najkraćem roku i rješavamo birokraciju umjesto vas.",
   "Više od 30 godina rješavamo imovinsko-pravne probleme u Istri.",
   "Detaljno poznajemo procedure lokalnih ureda i kako najbrže riješiti vaš predmet.",
 ];
