@@ -1,41 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
   /* Geodet brand: Light mode only */
   --header-height: 65px;
-  --background: #FFFFFF;
-  --foreground: #1E293B;
-  --card: #FFFFFF;
-  --card-foreground: #1E293B;
-  --popover: #FFFFFF;
-  --popover-foreground: #1E293B;
-  --primary: #1D4ED8;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F8F9FA;
-  --secondary-foreground: #1E293B;
-  --muted: #F8F9FA;
-  --muted-foreground: #64748B;
+  --background: #ffffff;
+  --foreground: #1e293b;
+  --card: #ffffff;
+  --card-foreground: #1e293b;
+  --popover: #ffffff;
+  --popover-foreground: #1e293b;
+  --primary: #1d4ed8;
+  --primary-foreground: #ffffff;
+  --secondary: #f8f9fa;
+  --secondary-foreground: #1e293b;
+  --muted: #f8f9fa;
+  --muted-foreground: #64748b;
   --accent: #166534;
-  --accent-foreground: #FFFFFF;
-  --destructive: #DC2626;
-  --destructive-foreground: #FFFFFF;
-  --border: #E2E8F0;
-  --input: #E2E8F0;
-  --ring: #1D4ED8;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #1d4ed8;
   --radius: 0.25rem;
 
   /* Custom brand tokens */
-  --midnight: #0F172A;
-  --navy: #1D4ED8;
-  --navy-dark: #1E3A8A;
+  --midnight: #0f172a;
+  --navy: #1d4ed8;
+  --navy-dark: #1e3a8a;
   --forest: #166534;
-  --charcoal: #1E293B;
-  --light-gray: #F8F9FA;
-  --footer-bg: #1E293B;
+  --charcoal: #1e293b;
+  --light-gray: #f8f9fa;
+  --footer-bg: #1e293b;
 
   /* Fluid global layout scale */
   --fluid-step: clamp(0.84rem, 0.8rem + 0.22vw, 1.1rem);
@@ -52,9 +52,9 @@ html {
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
-  --font-display: 'DM Serif Display', sans-serif; 
+  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-display: "DM Serif Display", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -136,7 +136,7 @@ html {
 }
 
 .animate-marquee {
-  animation: marquee 120s linear infinite;
+  animation: marquee 60s linear infinite;
 }
 
 /* Fade in slide up animation */
